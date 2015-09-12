@@ -80,6 +80,8 @@ extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstan
    setvbuf( stderr, NULL, _IONBF, 0 ); 
 #endif
 
+    CoInitialize(nullptr);
+
 	// Shutdown before VBoxSvc
 	SetProcessShutdownParameters(0x400, 0);
 
@@ -142,6 +144,10 @@ extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstan
 	}
 
 
-    return _AtlModule.WinMain(nShowCmd);
+    auto result = _AtlModule.WinMain(nShowCmd);
+
+	CoUninitialize();
+
+	return result;
 }
 

@@ -385,7 +385,7 @@ bool CVBoxMachine::SaveState()
 			if (SUCCEEDED(spSession->get_Console(&spConsole)))
 			{
 				CComPtr<IProgress> spProgress;
-				spConsole->SaveState(&spProgress);
+				m_spMachine->SaveState(&spProgress);
 			}
 
 			spSession->UnlockMachine();
